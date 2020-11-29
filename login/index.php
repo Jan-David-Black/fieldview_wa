@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
-$home = "/fieldview/";
+include_once '../home.php';
 $top_dir = $_SERVER['DOCUMENT_ROOT'].$home;
 include_once $top_dir.'api/config/database.php';
 if(isset($_GET['logout'])){

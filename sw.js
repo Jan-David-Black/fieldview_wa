@@ -1,9 +1,10 @@
 var cacheName = 'fw';
-var subFolder = '/fieldview';
+var subFolder = '/fieldview/';
 var filesToCache = [ //make more beautiful
   //subFolder.concat('/assets/css/style.css'),
-  subFolder.concat('/manifest.json'),
-  subFolder.concat('/favicon.ico')
+  subFolder.concat('manifest.json'),
+  subFolder.concat('favicon.ico'),
+  subFolder.concat('assets/images/damm.svg')
 ];
 
 /* Start the service worker and cache all of the app's content */

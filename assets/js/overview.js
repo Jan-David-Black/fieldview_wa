@@ -35,7 +35,7 @@ $(function(){
         pwd   = val['pwd'];
       }else{
         console.log('no credentials redirecting to login');
-        window.location.replace("/fieldview/login");
+        window.location.replace(home+"login");
       }
     });
   }).then(function(val){
@@ -93,7 +93,7 @@ $(function(){
           return props;
         }).then(props=>{
           //div.append(ul);
-          fetch('/fieldview/assets/images/damm_peter.svg')
+          fetch('/fieldview/assets/images/damm.svg')
           .then(response => response.text())
           .then((data) => {
             for (let [key, val] of Object.entries(props)) {
