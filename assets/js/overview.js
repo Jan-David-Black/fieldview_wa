@@ -93,7 +93,7 @@ $(function(){
           return props;
         }).then(props=>{
           //div.append(ul);
-          fetch('/fieldview/assets/images/damm.svg')
+          fetch(home+'assets/images/damm.svg')
           .then(response => response.text())
           .then((data) => {
             for (let [key, val] of Object.entries(props)) {
