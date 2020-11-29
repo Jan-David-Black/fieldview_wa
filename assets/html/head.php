@@ -1,4 +1,4 @@
-<?php $home = "/fieldview/";?>
+<?php include_once '../../home.php'; ?>
 <link rel="icon" href="<?= $home ?>favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="<?= $home ?>assets/images/hello-icon-152.png">
 <meta name="theme-color" content="white"/>
