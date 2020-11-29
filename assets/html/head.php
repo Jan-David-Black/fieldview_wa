@@ -15,5 +15,5 @@
 
 <script src="<?= $home ?>assets/js/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="<?= $home ?>assets/js/node_modules/idb/build/iife/index-min.js"></script>
-<script type="text/javascript"> let home = <?= $home ?>;</script>
+<script type="text/javascript"> let home = "<?= $home ?>";</script>
 <link rel="stylesheet" href="<?= $home ?>assets/css/style.css">
