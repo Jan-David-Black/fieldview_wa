@@ -1,5 +1,5 @@
 var cacheName = 'fw';
-var subFolder = '/fieldview/';
+var subFolder = '/';
 var filesToCache = [ //make more beautiful
   //subFolder.concat('/assets/css/style.css'),
   subFolder.concat('manifest.json'),

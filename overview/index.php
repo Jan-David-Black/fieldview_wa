@@ -8,8 +8,8 @@
 </head>
 
 <body class="fullscreen">
-  <img class='logo' src="<?= $home ?>/assets/images/Logo_rwdraw.svg"></img>
-  <button onclick="location.href='/fieldview/login?logout'" class="navigation">logout</button>
+  <img class='logo' src="<?= $home ?>assets/images/Logo_rwdraw.svg"></img>
+  <button onclick="location.href='<?= $home ?>login?logout'" class="navigation">logout</button>
 
   <div class="container" id="short">
   </div>

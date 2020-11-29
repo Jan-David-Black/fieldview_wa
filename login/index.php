@@ -42,7 +42,7 @@ if(isset($_GET['logout'])){
 <body class="fullscreen">
   <div class="container" id="login">
     <!--<h1 class="title">Aspargis</h1>-->
-    <img class='logo' src="<?= $home ?>/assets/images/Logo_rwdraw.svg"></img>
+    <img class='logo' src="<?= $home ?>assets/images/Logo_rwdraw.svg"></img>
     <form id="login-form" method="post">
      <input type="text" id="user" name="user" placeholder="username"><br>
      <input type="password" id="pwd" name="pwd" placeholder="password">
