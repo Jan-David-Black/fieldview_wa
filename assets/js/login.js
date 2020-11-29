@@ -60,7 +60,7 @@ $(function(){
                   pwd: arr[1]['value']
                 };
                 store.add(item, 1);
-                window.location.replace("/fieldview/overview");
+                window.location.replace(home+"overview");
               }
             });
           });
