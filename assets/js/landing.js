@@ -33,7 +33,7 @@ $(function(){
   }).then(function(val){
     if(val){
       console.log('found credentials proceeding to login');
-      window.location.replace("/fieldview/overview");
+      window.location.replace(home+"overview");
     }else{
       console.log('no credentials promoting login');
       $('#login').show();
