@@ -33,6 +33,6 @@ $(function(){
     return tx.complete;
   }).then(function(val){
     console.log('logout complete')
-    window.location.replace("/fieldview/login");
+    window.location.replace(home+"login");
   });
 });
