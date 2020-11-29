@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="assets/images/hello-icon-152.png">
+  <meta name="theme-color" content="white"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Quarto!">
+  <meta name="msapplication-TileImage" content="assets/images/hello-icon-144.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <link rel="manifest" href="/fieldview/manifest.json">
+  <meta name="theme-color" content="white"/>
+  <meta charset="utf-8">
+  <title>WebApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/node_modules/chart.js/dist/Chart.bundle.js"></script>
+  <script src="assets/js/node_modules/chart.js/dist/chartjs-plugin-colorschemes.min.js"></script>
+  <script src="assets/js/node_modules/moment/moment.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="fullscreen">
+  <div class="container">
+    <h1 class="title">Test</h1>
+
+    <button id="loader">Loading...</button>
+    <canvas id="myChart" width="50%", height="50%"></canvas>
+  </div>
+
+  <script src="assets/js/start.js"></script>
+  <script>
+    var ctx = $('#myChart');
+    var myChart = new Chart(ctx,{
+        type: 'line',
+        options:{
+             scales: {
+                 xAxes: [{
+                       type: 'time',
+                       display: true,
+                       scaleLabel: {
+                            display: true
+                       }
+                  }]
+             },
+             plugins: {
+               colorschemes: {
+                 scheme: 'brewer.Paired12'
+               }
+             }
+        }
+    });
+    var count = 1
+    $('#loader').click(function(){
+      var oReq = new XMLHttpRequest(); // New request object
+      oReq.onload = function() {
+        var SData = JSON.parse(this.responseText);
+        var data = [];
+        var labels = [];
+        for (const [key, value] of Object.entries(SData)) {
+          data.push({t:moment(value['TIME']).toDate(), y:value['VALUE']})
+          //labels.push(count++)
+          labels.push(moment(value['TIME']).toDate())
+        }
+        console.log(data, labels);
+        var dataset = {
+            label: 'Temperature '+count,
+            data: data,
+            labels: labels,
+            fill: false,
+            lineTension: 0.6,
+            pointRadius: 0
+        };
+        myChart.data.datasets.push(dataset);
+        console.log(myChart)
+        myChart.update();
+      }
+      oReq.open("get", "test.php?q="+count++, true);
+      oReq.send();
+    });
+  </script>
+</body>
+</html>

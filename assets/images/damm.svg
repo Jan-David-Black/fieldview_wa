@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 88.694434 41.303754"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (1.0.1+r74)"
+   sodipodi:docname="damm.svg">
+  <defs
+     id="defs2">
+    <rect
+       x="108.54757"
+       y="159.74902"
+       width="8.0701056"
+       height="26.131189"
+       id="rect926" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.3651405"
+     inkscape:cx="50.388459"
+     inkscape:cy="25.115655"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1208"
+     inkscape:window-height="656"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     units="mm"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.356798,-1.8434068)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.58611px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.0814592"
+       x="24.571878"
+       y="8.0228376"
+       id="text862"><tspan
+         sodipodi:role="line"
+         id="tspan860"
+         x="24.571878"
+         y="8.0228376"
+         style="font-size:4.58611px;stroke-width:0.0814592">${val['temp1']}°C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.58611px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.0814591"
+       x="31.374451"
+       y="16.834667"
+       id="text862-3"><tspan
+         sodipodi:role="line"
+         id="tspan860-6"
+         x="31.374451"
+         y="16.834667"
+         style="font-size:4.58611px;stroke-width:0.0814591">${val['temp2']}°C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.58611px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.0814591"
+       x="40.108776"
+       y="26.531288"
+       id="text862-7"><tspan
+         sodipodi:role="line"
+         id="tspan860-5"
+         x="40.108776"
+         y="26.531288"
+         style="font-size:4.58611px;stroke-width:0.0814591">${val['temp3']}°C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.58611px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.0814591"
+       x="48.037212"
+       y="34.920528"
+       id="text862-35"><tspan
+         sodipodi:role="line"
+         id="tspan860-62"
+         x="48.037212"
+         y="34.920528"
+         style="font-size:4.58611px;stroke-width:0.0814591">${val['temp4']}°C</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text924"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect926);" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:67.6344;stroke-width:0.0814591"
+       x="1.4651501"
+       y="42.615765"
+       id="text862-35-9"><tspan
+         x="1.4651501"
+         y="42.615765"><tspan
+           style="font-size:2.82222px;stroke-width:0.0814591">measured at: ${val['time']}</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1.2716137,10.013661 c 11.3975853,0 12.6963593,7.330246 12.6963593,7.330246 0,0 2.03949,15.59166 4.792443,18.42509 2.752954,2.833429 6.924562,2.485463 6.924562,2.485463 h 61.682967"
+       id="path988" />
+  </g>
+</svg>
