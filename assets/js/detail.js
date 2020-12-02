@@ -86,7 +86,7 @@ $(function(){
                          type: 'time',
                          display: true,
                          time: {
-                              unit: 'minute',
+                              unit: 'hour',
                               displayFormats: {
                                   hour: 'MMM D hA'
                               }
