@@ -30,8 +30,8 @@ class SGroup{
 		$Pos[$SID] = $pos;
       }
       $stmt->close();
-		
-	  var_dump($Pos);
+	  
+	  $pos_type_override = array(1=>"temp1", 2=>"temp2", 3=>"temp3", 4=>"temp4");
       $Result = [];
       foreach ($Types as $SID => $Type) {
         if(!isset($this->types) or in_array($Type, $this->types)){
@@ -47,7 +47,11 @@ class SGroup{
           $stmt->execute();
           $stmt->store_result();
           $stmt->bind_result($time, $val);
-          $tmp_arr = ["TYPE" => $Type, "VALUES" => []];
+		  
+		  if($Pos[$SID]){
+			$Type = $pos_type_override[$Pos[$SID]];
+		  }
+		  $tmp_arr = ["TYPE" => $Type, "VALUES" => []];
           while ($stmt->fetch()) {
             $tmp_arr["VALUES"][$time] = $val;
           }
