@@ -81,33 +81,34 @@ $(function(){
           method: "POST"
         }
 		
-        p = p.then(fetch("../api/sgroup/read.php", opt_pram)
-        .then(d=>{return d.text()})
-        .then(data=>{
-          console.log(data);
-		  const res = JSON.parse(data);
-          var props = [];
-          for (let [sid, val] of Object.entries(res)) {
-            let key = Object.keys(val['VALUES'])[0];
-            props[val['TYPE']] = parseFloat(val['VALUES'][key]).toFixed(2);
-            props['time'] = key;
-            ul.append(`<li>${key}: ${val['TYPE']} = ${val['VALUES'][key]}</li>`)
-          }
-          return props;
-        }).then(props=>{
-          //div.append(ul);
-          fetch(home+'assets/images/damm.svg')
-          .then(response => response.text())
-          .then((data) => {
-            for (let [key, val] of Object.entries(props)) {
-              data = data.replace("${val['"+key+"']}", val)
-            }
-            let div_graphic = jQuery('<div/>', {});
-            div_graphic.html(data);
-            div.append(div_graphic);
-            a.append(div);
-          });
-        }););
+        p = p.then(_ => {fetch("../api/sgroup/read.php", opt_pram)
+			.then(d=>{return d.text()})
+			.then(data=>{
+			  console.log(data);
+			  const res = JSON.parse(data);
+			  var props = [];
+			  for (let [sid, val] of Object.entries(res)) {
+				let key = Object.keys(val['VALUES'])[0];
+				props[val['TYPE']] = parseFloat(val['VALUES'][key]).toFixed(2);
+				props['time'] = key;
+				ul.append(`<li>${key}: ${val['TYPE']} = ${val['VALUES'][key]}</li>`)
+			  }
+			  return props;
+			}).then(props=>{
+			  //div.append(ul);
+			  fetch(home+'assets/images/damm.svg')
+			  .then(response => response.text())
+			  .then((data) => {
+				for (let [key, val] of Object.entries(props)) {
+				  data = data.replace("${val['"+key+"']}", val)
+				}
+				let div_graphic = jQuery('<div/>', {});
+				div_graphic.html(data);
+				div.append(div_graphic);
+				a.append(div);
+			  });
+			});
+		});
       }
     });
   });
