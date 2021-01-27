@@ -31,18 +31,18 @@ class SGroup{
       }
       $stmt->close();
 	  
-	  $sql = "SELECT Position, Sorte FROM SGroups WHERE SGroup = ?";
-      $stmt = $this->conn->prepare($sql);
-      $stmt->bind_param("s", $this->id);
-      $stmt->execute();
-      $stmt->store_result();
-      $stmt->bind_result($Field_Position, $Plant_Type);
-      $stmt->fetch();
-      $stmt->close();
+	  //$sql = "SELECT Position, Sorte FROM SGroups WHERE SGroup = ?";
+      //$stmt = $this->conn->prepare($sql);
+      //$stmt->bind_param("s", $this->id);
+      //$stmt->execute();
+      //$stmt->store_result();
+      //$stmt->bind_result($Field_Position, $Plant_Type);
+      //$stmt->fetch();
+      //$stmt->close();
 	  
 	  $pos_type_override = array(1=>"temp1", 2=>"temp2", 3=>"temp3", 4=>"temp4");
       $Result = [];
-	  $Result[0] = ["POSITION" => $Field_Position, "PLANTTYPE" => $Plant_Type];
+	  //$Result[0] = ["POSITION" => $Field_Position, "PLANTTYPE" => $Plant_Type];
       foreach ($Types as $SID => $Type) {
         if(!isset($this->types) or in_array($Type, $this->types)){
           $sql = "SELECT Timestamp, Value FROM Sensor_Values WHERE SensorID = ? ";
