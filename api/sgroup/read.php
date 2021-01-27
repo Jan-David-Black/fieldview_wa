@@ -1,4 +1,3 @@
-<?php phpinfo(); ?>
 <?php
 // required headers
 error_reporting(E_ALL);
