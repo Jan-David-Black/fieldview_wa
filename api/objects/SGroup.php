@@ -17,18 +17,21 @@ class SGroup{
     }
 
     function fetch_sensor_values($limit, $time_limit){
-      $sql = "SELECT SensorID, Type FROM Sensors WHERE SGroup = ?";
+      $sql = "SELECT SensorID, Type, pos FROM Sensors LEFT JOIN Correction_Sensorposition USING (SensorID) WHERE SGroup = ?";
       $stmt = $this->conn->prepare($sql);
       $stmt->bind_param("s", $this->id);
       $stmt->execute();
       $stmt->store_result();
-      $stmt->bind_result($SID, $Type);
+      $stmt->bind_result($SID, $Type, $pos);
       $Types = [];
+	  $Pos = [];
       while ($stmt->fetch()) {
         $Types[$SID] = $Type;
+		$Pos[$SID] = $pos;
       }
       $stmt->close();
-
+		
+	  var_dump($Pos);
       $Result = [];
       foreach ($Types as $SID => $Type) {
         if(!isset($this->types) or in_array($Type, $this->types)){
