@@ -80,9 +80,10 @@ $(function(){
           method: "POST"
         }
         fetch("../api/sgroup/read.php", opt_pram)
-        .then(d=>{return d.json()})
-        .then(res=>{
-          console.log(res);
+        .then(d=>{return d.text()})
+        .then(data=>{
+          console.log(data);
+		  const res = JSON.parse(data);
           var props = [];
           for (let [sid, val] of Object.entries(res)) {
             let key = Object.keys(val['VALUES'])[0];
