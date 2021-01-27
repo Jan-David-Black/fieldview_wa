@@ -51,6 +51,7 @@ $(function(){
     fetch("../api/sgroup/list.php", opt_pram)
     .then(d=>{return d.json()})
     .then(res=>{
+	  console.log(res);
       //$('#SGroups').text(JSON.stringify(res, null,2));
 	  var p = Promise.resolve();
       for (let [key, value] of Object.entries(res['SGroups'])) {
