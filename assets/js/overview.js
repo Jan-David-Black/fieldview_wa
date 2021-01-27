@@ -52,6 +52,7 @@ $(function(){
     .then(d=>{return d.json()})
     .then(res=>{
       //$('#SGroups').text(JSON.stringify(res, null,2));
+	  var p = Promise.resolve();
       for (let [key, value] of Object.entries(res['SGroups'])) {
         let div = jQuery('<div/>', {
             id: 'sgroup-${key}',
@@ -79,7 +80,8 @@ $(function(){
           body: form_data,
           method: "POST"
         }
-        fetch("../api/sgroup/read.php", opt_pram)
+		
+        p = p.then(fetch("../api/sgroup/read.php", opt_pram)
         .then(d=>{return d.text()})
         .then(data=>{
           console.log(data);
@@ -105,7 +107,7 @@ $(function(){
             div.append(div_graphic);
             a.append(div);
           });
-        });
+        }););
       }
     });
   });
