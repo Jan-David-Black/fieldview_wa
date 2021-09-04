@@ -16,7 +16,7 @@ class SGroup{
       $this->conn = $db;
     }
 
-    function fetch_sensor_values($limit, $time_limit){
+    function fetch_sensor_values($limit, $time_limit, $start_time){
       $sql = "SELECT SensorID, Type, pos FROM Sensors LEFT JOIN Correction_Sensorposition USING (SensorID) WHERE SGroup = ?";
       $stmt = $this->conn->prepare($sql);
       $stmt->bind_param("s", $this->id);
@@ -24,30 +24,32 @@ class SGroup{
       $stmt->store_result();
       $stmt->bind_result($SID, $Type, $pos);
       $Types = [];
-	  $Pos = [];
+	    $Pos = [];
       while ($stmt->fetch()) {
         $Types[$SID] = $Type;
-		$Pos[$SID] = $pos;
+		    $Pos[$SID] = $pos;
       }
       $stmt->close();
-	  
-	  //$sql = "SELECT Position, Sorte FROM SGroups WHERE SGroup = ?";
-      //$stmt = $this->conn->prepare($sql);
-      //$stmt->bind_param("s", $this->id);
-      //$stmt->execute();
-      //$stmt->store_result();
-      //$stmt->bind_result($Field_Position, $Plant_Type);
-      //$stmt->fetch();
-      //$stmt->close();
-	  
-	  $pos_type_override = array(1=>"temp1", 2=>"temp2", 3=>"temp3", 4=>"temp4");
+
+      $sql = "SELECT Position, Sorte FROM SGroups WHERE SGroup = ?";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bind_param("s", $this->id);
+      $stmt->execute();
+      $stmt->store_result();
+      $stmt->bind_result($Field_Position, $Plant_Type);
+      $stmt->fetch();
+      $stmt->close();
+
+	    $pos_type_override = array(1=>"temp1", 2=>"temp2", 3=>"temp3", 4=>"temp4");
       $Result = [];
-	  //$Result[0] = ["POSITION" => $Field_Position, "PLANTTYPE" => $Plant_Type];
+	    $Result[0] = ["POSITION" => $Field_Position, "PLANTTYPE" => $Plant_Type];
       foreach ($Types as $SID => $Type) {
         if(!isset($this->types) or in_array($Type, $this->types)){
           $sql = "SELECT Timestamp, Value FROM Sensor_Values WHERE SensorID = ? ";
           if($time_limit){
             $sql = $sql."and Timestamp >= DATE_SUB(NOW(),INTERVAL ".$time_limit." SECOND)";
+          }elseif ($start_time) {
+            $sql = $sql.'and Timestamp >= "'.$start_time.'"';
           }
           if($limit){
             $sql = $sql."ORDER BY id DESC LIMIT ".$limit;
@@ -57,7 +59,7 @@ class SGroup{
           $stmt->execute();
           $stmt->store_result();
           $stmt->bind_result($time, $val);
-		  
+
 		  if($Pos[$SID]){
 			$Type = $pos_type_override[$Pos[$SID]];
 		  }
@@ -73,14 +75,21 @@ class SGroup{
       $this->sensor_values = $Result;
     }
 
-    function list(){
-      // select all query
-      $sql = "SELECT * FROM SGroups";
-
+	function set_position($name){
+	  $sql = "UPDATE SGroups SET Position=? WHERE SGroup = ?";
       $stmt = $this->conn->prepare($sql);
+      $stmt->bind_param("ss", $name, $this->id);
       $stmt->execute();
-      $stmt->store_result();
-      return $stmt;
-    }
+	}
+
+  function list(){
+    // select all query
+    $sql = "SELECT * FROM SGroups";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $stmt->store_result();
+    return $stmt;
+  }
 }
 ?>

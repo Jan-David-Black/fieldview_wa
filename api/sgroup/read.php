@@ -23,7 +23,8 @@ $sgroup->id = $_POST['id'];
 $sgroup->types = $_POST['types'];
 
 $sgroup->fetch_sensor_values($_POST['limit'] ?? 48,
-                             $_POST['timelimit'] ?? 0);
+                             $_POST['timelimit'] ?? 0,
+                             $_POST['startdate'] ?? 0);
 
 if($sgroup->sensor_values){
     http_response_code(200);

@@ -6,6 +6,9 @@ if('serviceWorker' in navigator) {
     .catch(e => console.log(e));
 }
 
+var user = "";
+var pwd = "";
+
 $(function(){
   console.log('Document is ready; Version', 0);
   if (!('indexedDB' in window)) {
@@ -13,14 +16,10 @@ $(function(){
     return;
   }
 
-  $('#login').click(function(){
-    window.location.href = home+"login";
-  });
-
   const dbPromise = idb.openDB('fieldview', ver_idb, {
     upgrade(db) {
       if (!db.objectStoreNames.contains('login')) {
-        console.log('making a new object store');
+        console.log('making a new object store: login');
         db.createObjectStore('login', {autoIncrement:true});
       }
       if (!db.objectStoreNames.contains('temps')) {
@@ -33,15 +32,19 @@ $(function(){
   dbPromise.then(function(db){
     var tx = db.transaction('login', 'readwrite');
     var store = tx.objectStore('login');
-    return store.get(1);
+    return store.get(1).then(function(val){
+      if(val){
+        console.log('Retreived credentials');
+        user  = val['user'];
+        pwd   = val['pwd'];
+      }else{
+        console.log('no credentials redirecting to login');
+        window.location.replace(home+"login");
+      }
+    });
   }).then(function(val){
-    if(val){
-      console.log('found credentials proceeding to login');
-      window.location.replace(home+"overview");
-    }else{
-      console.log('no credentials promoting login');
-      $('#login').show();
-    }
+    console.log('fetching data for user: ', user)
+	$('#user').val(user);
+	$('#pwd').val(pwd);
   });
-  window.location.href = home+"login";
 });

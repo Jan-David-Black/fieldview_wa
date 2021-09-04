@@ -19,7 +19,6 @@ $sgroup = new SGroup($db);
 // query products
 $stmt = $sgroup->list();
 $num = $stmt->num_rows;
-
 // check if more than 0 record found
 if($num>0){
     // products array
@@ -34,7 +33,7 @@ if($num>0){
 
         $sgroups_arr["SGroups"][$SGID] = $sgroup_item;
     }
-
+    //var_dump($sgroups_arr);
     // set response code - 200 OK
     http_response_code(200);
 

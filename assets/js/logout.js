@@ -13,11 +13,15 @@ $(function(){
     return;
   }
 
-  const dbPromise = idb.openDB('fieldview', 1, {
+  const dbPromise = idb.openDB('fieldview', ver_idb, {
     upgrade(db) {
       if (!db.objectStoreNames.contains('login')) {
         console.log('making a new object store: login');
         db.createObjectStore('login', {autoIncrement:true});
+      }
+      if (!db.objectStoreNames.contains('temps')) {
+        console.log('making a new object store: temps');
+        db.createObjectStore('temps', {keyPath: "SGroupID", autoIncrement:false});
       }
     },
   });

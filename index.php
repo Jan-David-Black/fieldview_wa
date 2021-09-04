@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <?php
-  include_once 'home.php';
-  $top_dir = $_SERVER['DOCUMENT_ROOT'].$home;?>
+  error_reporting(E_ALL);
+  ini_set('display_errors', 'on');
+  include_once 'home.php';?>
   <?php include $top_dir.'assets/html/head.php'; ?>
   <!--<?php include $top_dir.'assets/html/charts.php'; ?>-->
 </head>
@@ -13,6 +15,6 @@
 
     <button id="login" style="display: none">login</button>
   </div>
-  <script src="assets/js/landing.js"></script>
+  <script src="assets/js/landing.js?random=2"></script>
 </body>
 </html>

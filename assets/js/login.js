@@ -13,11 +13,15 @@ $(function(){
     return;
   }
 
-  const dbPromise = idb.openDB('fieldview', 1, {
+  const dbPromise = idb.openDB('fieldview', ver_idb, {
     upgrade(db) {
       if (!db.objectStoreNames.contains('login')) {
         console.log('making a new object store');
         db.createObjectStore('login', {autoIncrement:true});
+      }
+      if (!db.objectStoreNames.contains('temps')) {
+        console.log('making a new object store: temps');
+        db.createObjectStore('temps', {keyPath: "SGroupID", autoIncrement:false});
       }
     },
   });
@@ -40,9 +44,10 @@ $(function(){
         method: "POST"
       }
       fetch("index.php", opt_pram)
-      .then(d=>{return d.json()})
-      .then(res=>{
-        //console.log(res);
+      .then(d=>{return d.text()})
+      .then(data=>{
+        console.log(data);
+        res = JSON.parse(data);
         if(res['success']){
           console.log('credentials correct saving to idb')
           dbPromise.then(function(db){

@@ -1,5 +1,6 @@
 <link rel="icon" href="<?= $home ?>favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="<?= $home ?>assets/images/hello-icon-152.png">
+<meta name="description" content="Small app to display temperature data gathered by aspargis sensor nodes"/>
 <meta name="theme-color" content="white"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -14,5 +15,8 @@
 
 <script src="<?= $home ?>assets/js/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="<?= $home ?>assets/js/node_modules/idb/build/iife/index-min.js"></script>
-<script type="text/javascript"> let home = "<?= $home ?>";</script>
+<script type="text/javascript">
+  let home = "<?= $home ?>";
+  let ver_idb = 5;
+</script>
 <link rel="stylesheet" href="<?= $home ?>assets/css/style.css">

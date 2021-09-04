@@ -28,7 +28,7 @@
       "purpose": "any maskable"
     }],
   "lang": "en-US",
-  "start_url": "/",
+  "start_url": "/fieldview/",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"

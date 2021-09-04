@@ -2,11 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 include_once '../home.php';
-$top_dir = $_SERVER['DOCUMENT_ROOT'].$home;
 include_once $top_dir.'api/config/database.php';
 if(isset($_GET['logout'])){
   //json_encode($_POST);
 ?>
+<head>
+  <?php include $top_dir.'assets/html/head.php'; ?>
+  <!--<?php include $top_dir.'assets/html/charts.php'; ?>-->
+</head>
 <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 <script src="<?= $home ?>assets/js/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="<?= $home ?>assets/js/node_modules/idb/build/iife/index-min.js"></script>
@@ -42,10 +45,10 @@ if(isset($_GET['logout'])){
 <body class="fullscreen">
   <div class="container" id="login">
     <!--<h1 class="title">Aspargis</h1>-->
-    <img class='logo' src="<?= $home ?>assets/images/Logo_rwdraw.svg"></img>
+    <img class='logo' src="<?= $home ?>assets/images/Logo_rwdraw.svg" alt="Aspargis Logo"></img>
     <form id="login-form" method="post">
      <input type="text" id="user" name="user" placeholder="username"><br>
-     <input type="password" id="pwd" name="pwd" placeholder="password">
+     <input type="password" id="pwd" name="pwd" placeholder="password"><br>
      <button type="submit" value="Submit">login</button>
     </form>
     <div id="prompt"></div>
@@ -56,7 +59,7 @@ if(isset($_GET['logout'])){
     <br>
     <button onclick="location.href='?logout'">logout</button>
   </div>
-  <script src="<?= $home ?>assets/js/login.js"></script>
+  <script src="<?= $home ?>assets/js/login.js?random=1"></script>
 </body>
 </html>
 <?php } ?>

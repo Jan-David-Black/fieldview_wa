@@ -15,16 +15,19 @@ $(function(){
     console.log('This browser doesn\'t support IndexedDB');
     return;
   }
-
-  const dbPromise = idb.openDB('fieldview', 1, {
+  $('#logout-button').delay(1000).fadeIn();
+  const dbPromise = idb.openDB('fieldview', ver_idb, {
     upgrade(db) {
       if (!db.objectStoreNames.contains('login')) {
         console.log('making a new object store: login');
         db.createObjectStore('login', {autoIncrement:true});
       }
+      if (!db.objectStoreNames.contains('temps')) {
+        console.log('making a new object store: temps');
+        db.createObjectStore('temps', {keyPath: "SGroupID", autoIncrement:false});
+      }
     },
   });
-
   dbPromise.then(function(db){
     var tx = db.transaction('login', 'readwrite');
     var store = tx.objectStore('login');
@@ -49,9 +52,10 @@ $(function(){
       method: "POST"
     }
     fetch("../api/sgroup/list.php", opt_pram)
-    .then(d=>{return d.json()})
-    .then(res=>{
-	  console.log(res);
+    .then(d=>{return d.text()})
+    .then(data=>{
+	  console.log(data);
+	  res = JSON.parse(data);
       //$('#SGroups').text(JSON.stringify(res, null,2));
 	  var p = Promise.resolve();
       for (let [key, value] of Object.entries(res['SGroups'])) {
@@ -62,11 +66,8 @@ $(function(){
         let a = jQuery('<a/>', {
             href: `detail?id=${key}`,
         });
+		    a.hide();
         $('#short').append(a);
-
-        div.addClass('SGroup_ov').append(`<a href="detail?id=${key}"></a>`);
-        //<h3>Sensor ${key}: ${value["Pos"]} ${value["Field"]}</h3>
-        let ul = jQuery('<ul/>', {});
 
         var form_data = new FormData();
         form_data.append( "user", user);
@@ -81,32 +82,38 @@ $(function(){
           body: form_data,
           method: "POST"
         }
-		
+
         p = p.then(_ => {fetch("../api/sgroup/read.php", opt_pram)
 			.then(d=>{return d.text()})
 			.then(data=>{
-			  console.log(data);
+			  //console.log(data);
 			  const res = JSON.parse(data);
 			  var props = [];
 			  for (let [sid, val] of Object.entries(res)) {
+				if(sid>0){
 				let key = Object.keys(val['VALUES'])[0];
 				props[val['TYPE']] = parseFloat(val['VALUES'][key]).toFixed(2);
 				props['time'] = key;
-				ul.append(`<li>${key}: ${val['TYPE']} = ${val['VALUES'][key]}</li>`)
+			   }else{
+			      props["Standort"] = val["POSITION"];
+			      props["Sorte"] = val["PLANTTYPE"];
+			   }
 			  }
 			  return props;
 			}).then(props=>{
-			  //div.append(ul);
 			  fetch(home+'assets/images/damm.svg')
 			  .then(response => response.text())
 			  .then((data) => {
 				for (let [key, val] of Object.entries(props)) {
 				  data = data.replace("${val['"+key+"']}", val)
 				}
-				let div_graphic = jQuery('<div/>', {});
-				div_graphic.html(data);
-				div.append(div_graphic);
+				//let div_graphic = jQuery('<div/>', {});
+				//div_graphic.html(data);
+        //div_graphic.attr('alt', props['Standort']);
+				//div.append(div_graphic);
+        div.html(data);
 				a.append(div);
+				a.fadeIn();
 			  });
 			});
 		});
